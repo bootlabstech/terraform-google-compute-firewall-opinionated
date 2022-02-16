@@ -23,7 +23,18 @@ variable "project" {
 
 variable "direction" {
   type        = string
-  description = "Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify source_ranges OR source_tags. For INGRESS traffic, one of source_ranges, source_tags or source_service_accounts is required. Possible values are INGRESS and EGRESS."
+  description =  <<-EOT
+  {
+   "type": "json",
+   "purpose": "autocomplete",
+   "data": [
+  "INGRESS",
+  "EGRESS"
+   ],
+   "default":"INGRESS"
+   "description": "Direction of traffic to which this firewall applies."
+}
+EOT 
 }
 
 variable "source_ranges" {
